@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 const express = require("express");
+
 const cors = require("cors");
 var bodyParser = require("body-parser");
 
@@ -11,6 +12,7 @@ const port = +process.env.PORT;
 const allowedOrigins = ["http://localhost:3000"];
 
 const AWS = require("aws-sdk");
+const echo3DRouter = require("./echo3dRoute");
 
 AWS.config.update({
     region: process.env.AWS_REGION, // Change to your preferred region
@@ -33,6 +35,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(jsonParser);
+app.use("/echo3d", echo3DRouter);
 
 app.get("/health-check", async (req, res) => {
     console.log(`Example app listening on port ${port}`);
