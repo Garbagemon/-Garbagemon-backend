@@ -8,7 +8,7 @@ var jsonParser = bodyParser.json({ limit: 52428800 });
 
 const app = express();
 const port = +process.env.PORT;
-const allowedOrigins = ["http://localhost:3000"];
+const allowedOrigins = ["http://localhost:3000", "https://web-garbagemon.vercel.app"];
 
 const AWS = require("aws-sdk");
 const echo3DRouter = require("./echo3dRoute");
