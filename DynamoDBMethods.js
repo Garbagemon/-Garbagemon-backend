@@ -1,6 +1,5 @@
 require("dotenv").config;
 var { marshalItem, unmarshalItem } = require("dynamodb-marshaler");
-const e = require("express");
 
 function insertItemPromise(dynamoDB, dynamoDBParamsToBeUploaded) {
     const dynamoDBParams = {

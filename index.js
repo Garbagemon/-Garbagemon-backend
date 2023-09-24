@@ -69,7 +69,12 @@ app.post("/recognize", async (req, res) => {
         MinConfidence: 50,
     };
 
+    const dynamoDBUserQueryParams = {
+        userId,
+    };
+
     const rekognitionInf = getRekognitionInfPromise(rekognitionRef, rekognitionParams);
+    const existingDataPromise = getItemPromise(dynamodbRef, dynamoDBUserQueryParams);
 
     try {
         await rekognitionInf;
@@ -82,12 +87,6 @@ app.post("/recognize", async (req, res) => {
     }
 
     const rekognitionData = await rekognitionInf;
-
-    const dynamoDBQueryParams = {
-        userId,
-    };
-
-    const existingDataPromise = getItemPromise(dynamodbRef, dynamoDBQueryParams);
 
     try {
         await existingDataPromise;
