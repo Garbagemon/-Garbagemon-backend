@@ -17,7 +17,7 @@ function getUserGarbagePoints(userID) {
   
     //update the code here to extract data from the table
     const params = {
-    TableName: "YourTableName",
+    TableName: "garbagemon_userdata",
     Key: {
       UserID: { S: userID },
     },
@@ -34,15 +34,17 @@ function getUserGarbagePoints(userID) {
         const points = parseInt(data.Item.Points.N);
         
         //if points are retrieved, then render the object
-        renderEcho3Dobject(points);
+        renderEcho3DObject(points);
 
     }
   });
 
 }
 
+//use axios to call echo3d api
 const axios = require('axios');
 
+//function to render the trash model
 function renderEcho3DObject(userPoints) {
     
     // scale factor 
